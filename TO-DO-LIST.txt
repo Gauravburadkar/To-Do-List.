@@ -1,0 +1,87 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class ToDoList {
+    private static ArrayList<String> toDoList = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("\n--- To-Do List ---");
+            System.out.println("1. Add Item");
+            System.out.println("2. Remove Item");
+            System.out.println("3. View List");
+            System.out.println("4. Exit");
+
+            System.out.print("Choose an option (1-4):");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            switch (choice) {
+                case 1:
+                    addItem();
+                    break;
+                case 2:
+                    removeItem();
+                    break;
+                case 3:
+                    viewList();
+                    break;
+                case 4:
+                    System.out.println("Exiting program. Goodbye!");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a number between 1 and 4.");
+            }
+        }
+    }
+
+    private static void addItem() {
+        System.out.print("Enter the item to add: ");
+        String item = scanner.nextLine();
+        toDoList.add(item);
+        System.out.println("Item added successfully!");
+    }
+
+    private static void removeItem() {
+        if (toDoList.isEmpty()) {
+            System.out.println("The to-do list is empty. Nothing to remove.");
+            return;
+        }
+
+        System.out.println("Current To-Do List:");
+        for (int i = 0; i < toDoList.size(); i++) {
+            System.out.println((i + 1) + ". " + toDoList.get(i));
+        }
+
+        System.out.print("Enter the number of the item to remove: ");
+        int index;
+        try {
+            index = scanner.nextInt();
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter a number.");
+            scanner.nextLine(); // Consume the invalid input
+            return;
+        }
+        scanner.nextLine(); // Consume the newline character
+
+        if (index >= 1 && index <= toDoList.size()) {
+            String removedItem = toDoList.remove(index - 1);
+            System.out.println("Item '" + removedItem + "' removed successfully!");
+        } else {
+            System.out.println("Invalid index. No item removed.");
+        }
+    }
+
+    private static void viewList() {
+        if (toDoList.isEmpty()) {
+            System.out.println("The to-do list is empty.");
+        } else {
+            System.out.println("To-Do List:");
+            for (int i = 0; i < toDoList.size(); i++) {
+                System.out.println((i + 1) + ". " + toDoList.get(i));
+            }
+        }
+    }
+}
