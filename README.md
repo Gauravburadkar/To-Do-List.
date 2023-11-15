@@ -1,2 +1,2 @@
 # To-Do-List.
-I have created a Simple To - Do List Using Java Programming Language.
+Created a simple To-Do-List Using Java that allows users to add, remove, and view items on a to-do list.
